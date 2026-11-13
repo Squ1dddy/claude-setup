@@ -1,0 +1,24 @@
+/* scroll-scenes.css — structural styles for scroll-scenes.js. Brand styling lives in the site's own CSS. */
+.scene{position:relative;height:var(--len,400vh)}
+.scene__stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  background:var(--canvas,#101014) center/cover no-repeat}
+.scene__canvas{position:absolute;inset:0;width:100%;height:100%;display:block;
+  opacity:0;transition:opacity .6s var(--ease-out,cubic-bezier(.22,1,.36,1))}
+.scene.is-ready .scene__canvas{opacity:1}
+.scene__scrim{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 120% 90% at 50% 45%,rgba(10,10,18,0) 35%,rgba(10,10,18,.55) 100%)}
+.band{position:absolute;opacity:0;will-change:opacity,transform}
+
+/* Loading hint: a hairline that fills with --load until the scene is ready */
+.scene__stage::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  transform-origin:left;transform:scaleX(var(--load,0));background:var(--accent-muted,rgba(255,255,255,.35));
+  transition:opacity .4s}
+.scene.is-ready .scene__stage::after{opacity:0}
+
+/* Static mode (reduced motion, or data-mobile="static" on phones): one composed screen, no pinning */
+.scene.is-static{height:auto}
+.scene.is-static .scene__stage{position:relative;min-height:100vh;min-height:100svh}
+.scene.is-static .scene__canvas,.scene.is-static .scene__stage::after{display:none}
+.scene.is-static .band{opacity:1}
+
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}

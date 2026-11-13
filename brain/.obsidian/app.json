@@ -1,0 +1,10 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Inbox",
+  "attachmentFolderPath": "_system/attachments",
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "shortest",
+  "userIgnoreFilters": [
+    "_system/"
+  ]
+}

@@ -1,0 +1,63 @@
+# Global Claude Instructions
+
+## Workflow (Matt Pocock skills core + 3 superpowers skills, 2026-09-21)
+- Questions, small edits, config tweaks, one-file fixes: act directly. No process skills, no plans.
+- Real work runs as chunk -> build -> verify:
+  1. Align: `/grill-with-docs` in a repo (keeps `GLOSSARY.md` + ADRs), `/grill-me` outside one.
+  2. Plan: `/to-spec` then `/to-tickets`. Tickets are vertical slices sized for one fresh context. Work too big for one session: `/wayfinder`. Large task (3+ tickets, or clearly more than one fresh context): suggest `auto-run` in one line before building (background loop of fresh headless workers, Brain run note); start it only on his yes.
+  3. Build: `/implement` one ticket at a time: `tdd` at agreed seams, typecheck and single tests often, full suite at the end.
+  4. Clean up: `/simplify` on the ticket's diff (dead code, duplicate logic, unused components, needless complexity the feature added). Treat its finds as suspects: keep only what the code confirms. Skip for tiny diffs.
+  5. Verify: `review-changes` (standards + spec) and `verification-before-completion` (evidence before any "done" claim). Then commit, and use `finishing-a-development-branch` when a branch is complete. PR bodies follow the `pr` skill (merge danger: one-way/two-way door, blast radius).
+  6. Retro, then checkpoint to Brain after each ticket or phase (see below). Before the checkpoint, offer `/retro` (he types it; it's user-invoked) in one line when the ticket or phase hit friction (skip smooth ones). It only suggests; apply only the fixes he picks. Mechanical mistakes become checks (lint, hook, CI), not more written rules.
+- Auth, input, Server Actions/API routes, Supabase tables/RLS, secrets, personal data: follow `security-checklist` while building.
+- Bugs: `diagnosing-bugs` (feedback loop first). Review feedback from others: `receiving-code-review`. Unsure which skill fits: `/ask-matt`.
+- First time in a repo: `/setup-matt-pocock-skills` (use local files as the tracker unless I say otherwise).
+- These are guides, not rituals: skip steps that add nothing and say so.
+- Ask when intent, scope or taste is even slightly uncertain; don't guess. Skip questions only when the answer is clear from the request, code, or Brain.
+
+## One lead session, one builder (2026-10-01)
+- **Opus leads, Sonnet builds.** This session plans, scopes, accepts and talks to me. Multi-file build tickets go to the `sonnet-coder` subagent through `/delegate` (when to delegate, the brief, the acceptance check). Small jobs stay inline.
+- Allowed subagents: `sonnet-coder` (via `/delegate`), `council-advisor` (via `/council`) and the 19 `claude-seo:*` helpers inside a `/seo` job. No other agent types, including general-purpose, Explore, Plan and caveman. Skill steps that mention other agents (impeccable reviewer agents, anything unpatched) run inline. Keep context lean: read excerpts not whole files, search before reading, keep tool output short (`| head`, filters), no status-only turns, cap screenshots.
+- **Checkpoint to Brain** at the end of each chunk/phase, before I `/clear`, and when context gets heavy: follow the checkpoint protocol in `Brain/Knowledge/Vault Writing Guide.md` (brain skill has the steps). Then tell me it's safe to clear.
+- Hooks back this up: past 150k context a `CONTEXT GUARD` note asks for a checkpoint (again every +50k, `context-guard.js`); after compact/clear a `RESUME CHECK` note appears (`brain.py session`). Act on them.
+- **Resume** in a fresh session: opened in the project's repo, its Brain `## Resume: <branch>` is injected at startup; otherwise search Brain for the project and read its Resume. Verify against `git status`/files, continue from "Next".
+
+## Output style
+Chat style lives in Brain `Knowledge/Style.md` (imported via Profile): lean direct default, ADHD-friendly explain mode for explanations, follow-ups and confusion. No caveman, no persona.
+
+## Noticing questions (2026-10-13)
+Beyond spec questions, ask when I notice something about how {{NAME}} works that he may not see. Only these triggers for now:
+1. **Ambiguous word:** a term of his I've had to guess at (twice, or once if the guess was costly). Ask what he means, save the answer.
+2. **Contradiction:** what he says now vs a Brain fact or standing rule (priorities, schedule, a preference). Ask which wins.
+3. **Repeated correction:** he fixes the same thing a second time. Ask if it should be a standing rule.
+4. **Stale fact:** a Brain fact that has probably expired (e.g. a priority or deadline whose date has passed). Ask once.
+Format: at most one per reply, last line, never blocks the work, quick options plus "skip". Ask only if the answer changes how I behave later and I can't verify it from code, Brain or the transcript. Away mode: no live questions; note them in the checkpoint's Resume and ask on return. Skipped or answered: save the outcome to Brain, don't re-ask. Review after ~2 weeks: keep, trim or widen triggers.
+
+## Frontend
+- New site, page, or redesign: `/impeccable` sets direction. Pull in `/ui-ux-pro-max` (palettes, fonts) or `/design-motion-principles` (motion create/audit) only when that part of the work is in play.
+- Any web design work: also load `web-visual-fx` (3D, shader gradients, liquid glass, liquid logo). Impeccable decides whether an effect fits; web-visual-fx covers how to build it.
+- Product UI that should feel fast/polished (forms, lists, mutations, loading states): also `/ux-feel` (20-detail audit + Doherty rules). Check it against the project's DESIGN.md register first.
+- Small UI tweaks: no design skills.
+
+## Tools
+- Library/framework/API docs: context7 before guessing.
+- Browser: in-app browser pane by default; playwright MCP for scripted testing.
+- Browser pane hidden (tabs_context says so): read with read_page/get_page_text/find and act by ref; open it with show_pane before clicks or screenshots. Don't retry a click that failed on a hidden pane.
+
+## Secrets
+Never put API keys or tokens in settings, permission rules, commands, or files Claude writes. Store them in user env vars and reference by name (`${VAR}`). Exception: app secrets may go in a gitignored project `.env.local` that {{NAME}} fills in himself.
+
+## Installing skills, plugins, MCPs
+Scan before every install, no exceptions: clone/download to a temp dir first, run the `skill-inspector` skill (`skillspector scan <dir> --no-llm`, then read the source behind any HIGH/CRITICAL finding), and give me the APPROVE/CAUTION/REJECT verdict before installing. Pin git installs to the reviewed commit. Never run a target's install scripts during review.
+
+## Memory
+- Long-term memory is the Obsidian vault `{{HOME}}\Brain`, shared by every session. Built-in auto memory is off.
+- A `Brain:` block of note pointers may be injected per prompt. Read a note only if it matters to the task; otherwise search with the `brain` skill.
+- Save durable facts (preferences, corrections, decisions, lessons, project state) to the vault when learned, without asking. Never save secrets.
+- Write vault notes with Write/Edit (or `brain.py`), never shell redirects, sed, cp or rm: the guard blocks any shell command that mentions a vault path and a write verb, even if the write targets elsewhere.
+- Daily note only on wrap-up.
+
+@{{HOME}}/Brain/Profile.md
+
+## Projects
+Projects live in `{{HOME}}\Projects\`. Project without `.claude/`: suggest `/new-project-setup`, don't auto-run it.

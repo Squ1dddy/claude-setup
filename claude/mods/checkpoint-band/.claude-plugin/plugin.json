@@ -1,0 +1,6 @@
+{
+  "name": "checkpoint-band",
+  "version": "0.1.0",
+  "description": "Band above the prompt: context size, last Brain save, Resume Next line, Checkpoint button",
+  "types": "./types/index.d.ts"
+}
