@@ -1,0 +1,167 @@
+{
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
+    "CLAUDE_CODE_PLUGIN_DIRS": "{{HOME}}/.claude/mods/checkpoint-band"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(rtk *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(npm ls *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(claude --version)",
+      "Bash(claude plugin *)",
+      "Bash(claude mcp *)",
+      "PowerShell(claude mcp *)",
+      "Bash(gh api *)",
+      "PowerShell(gh api *)",
+      "Bash(gh repo *)",
+      "Bash(git clone *)",
+      "PowerShell(Get-Content *)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "mcp__context7",
+      "mcp__playwright",
+      "mcp__notebooklm",
+      "Skill(impeccable)",
+      "Skill(impeccable:*)",
+      "Agent(claude-seo:seo-agentic)",
+      "Agent(claude-seo:seo-backlinks)",
+      "Agent(claude-seo:seo-cluster)",
+      "Agent(claude-seo:seo-content)",
+      "Agent(claude-seo:seo-dataforseo)",
+      "Agent(claude-seo:seo-drift)",
+      "Agent(claude-seo:seo-ecommerce)",
+      "Agent(claude-seo:seo-flow)",
+      "Agent(claude-seo:seo-geo)",
+      "Agent(claude-seo:seo-google)",
+      "Agent(claude-seo:seo-image-gen)",
+      "Agent(claude-seo:seo-local)",
+      "Agent(claude-seo:seo-maps)",
+      "Agent(claude-seo:seo-performance)",
+      "Agent(claude-seo:seo-schema)",
+      "Agent(claude-seo:seo-sitemap)",
+      "Agent(claude-seo:seo-sxo)",
+      "Agent(claude-seo:seo-technical)",
+      "Agent(claude-seo:seo-visual)",
+      "Agent(sonnet-coder)",
+      "Read(~/.claude/**)"
+    ],
+    "deny": []
+  },
+  "model": "opus",
+  "advisorModel": "opus",
+  "effortLevel": "high",
+  "autoMemoryEnabled": false,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/hooks/rtk-rewrite.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"{{HOME}}/Brain/_system/brain.py\" guard",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"{{HOME}}/Brain/_system/brain.py\" hook",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"{{HOME}}/.claude/hooks/context-guard.js\" prompt",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"{{HOME}}/Brain/_system/brain.py\" autocommit",
+            "timeout": 15,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"{{HOME}}/Brain/_system/brain.py\" session",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"{{HOME}}/Brain/_system/brain.py\" check",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "caveman@caveman": false,
+    "claude-hud@claude-hud": false,
+    "playwright@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "claude-seo@agricidaniel-claude-seo": true,
+    "floorplan@floorplan": true
+  },
+  "extraKnownMarketplaces": {
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
+      }
+    }
+  }
+}
