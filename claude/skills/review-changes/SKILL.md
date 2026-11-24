@@ -1,9 +1,11 @@
 ---
 name: review-changes
-description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews one after the other in this session and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
+description: 'Review changes since a commit, branch, tag or merge-base on two axes: Standards (repo coding standards) and Spec (matches the originating issue or spec). Reports both side by side. Use to review a branch, PR or work in progress, or on review since X.'
 ---
 <!-- Local patch: run any sub-agent step inline. CLAUDE.md allows only sonnet-coder (/delegate), council-advisor (/council) and claude-seo helpers. -->
 
+
+**Skip this skill** when the diff is under about 100 lines across 3 files or fewer and does not touch auth, RLS, Server Actions, API routes, secrets, personal data or deletes. Say "review skipped: small diff" and stop. If the user did not supply a fixed point, use the commit before the ticket's first commit instead of asking.
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 

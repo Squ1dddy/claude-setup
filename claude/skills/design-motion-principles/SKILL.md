@@ -1,6 +1,6 @@
 ---
 name: design-motion-principles
-description: "Motion and interaction design expert based on Emil Kowalski, Jakub Krehel, and Jhey Tompkins' techniques. Two modes — build interactive components with purposeful motion, or audit existing animations to catch AI-slop motion patterns (audit emits a branded HTML report with looping demos). Use when creating, adding, animating, or reviewing UI motion: transitions, hover states, micro-interactions, enter/exit animations, or any motion design work in React, Framer Motion, CSS, or HTML. Provides per-designer perspectives with context-aware weighting."
+description: 'Motion and interaction design based on Emil Kowalski, Jakub Krehel and Jhey Tompkins. Two modes: build components with purposeful motion, or audit existing animations for AI-slop patterns (emits an HTML report). Use when creating, animating or reviewing UI motion: transitions, hover states, micro-interactions, enter and exit animations in React, Framer Motion, CSS or HTML.'
 ---
 
 # Design Motion Principles

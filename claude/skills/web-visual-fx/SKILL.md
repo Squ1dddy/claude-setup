@@ -1,6 +1,6 @@
 ---
 name: web-visual-fx
-description: Implementation toolkit for premium visual effects on websites - 3D scenes (React Three Fiber), liquid/Apple-style glass UI (liquid-glass-js), animated shader gradient backgrounds (ShaderGradient), and liquid/chrome animated logos (liquid-logo shader). Use on ANY web design task - building, designing or redesigning a website, landing page, hero section, portfolio, product page, background, or UI component - and whenever the user mentions 3D, three.js, WebGL, shaders, glass, glassmorphism, gradients, animated backgrounds or logo effects. Runs after /impeccable sets direction; supplies the how, not the whether.
+description: 'Toolkit for premium website effects: 3D scenes (React Three Fiber), liquid glass UI, shader gradient backgrounds, liquid or chrome animated logos. Use on any web design task (site, landing page, hero, portfolio, product page, background) and when the user mentions 3D, three.js, WebGL, shaders, glass, gradients or logo effects. Runs after /impeccable sets direction; supplies the how, not the whether.'
 ---
 
 # Web Visual FX

@@ -15,8 +15,7 @@ updated: {{DATE}}
 
 ## Working preferences
 <!-- These are the defaults this setup ships with. Keep, change or delete each one during the interview. -->
-- **Opus thinks, correctness over cost.** Don't downgrade the lead session's model to save tokens.
-- **Opus leads, Sonnet builds.** Multi-file tickets go to `sonnet-coder` via `/delegate`; small jobs inline; product decisions go to {{NAME}}. Details: [[Decisions]].
+- **Sonnet by default, Opus where it earns it.** Sonnet builds inline. Opus is for grilling, planning big work, design and product calls, security, and hard diagnosis. In an Opus session, multi-file tickets go to `sonnet-coder` via `/delegate`. Product decisions go to {{NAME}}. Details: [[Decisions]] and CLAUDE.md.
 - **Ask when uncertain.** Even a little doubt about intent, scope or taste: ask first.
 - **Away mode:** when {{NAME}} says they're busy/away or "use your judgement", take the reversible option on scope/taste calls, list each under "Decided while you were away", and ask on return. Prohibited actions, pushes to main and real-data deletes still wait.
 - Plain language, direct, no hedging. Terse. Time estimates: Claude's own time, omit anything under 5 min.
@@ -25,8 +24,8 @@ updated: {{DATE}}
 - Clearing: checkpoint, summarise, say it's safe to clear, and give the exact prompt to paste after clearing in its own code block.
 - After edits, show what changed and stop.
 - First sentence of every final reply = a plain headline of what was done, under 80 characters.
-- Run commands yourself when your own shell can; hand over only what you truly can't do (env vars/secrets, sign-ins, windows you can't reach). Every command they must run says WHERE (which app, how to open it) and is copy-paste exact.
-- Every change report ends with a short **Summary:** section in everyday words: what changed, what it means, what they need to do.
+- **Run it yourself.** If your own shell or tools can do it, do it. Never ask {{NAME}} to run a command you can run (installs, clones, dry runs, config edits, checks). Hand over only what you truly cannot do: secrets and env vars, sign-ins, CAPTCHAs, admin/UAC prompts, windows you cannot reach. Then say which app to open and give one exact copy-paste command per block.
+- Every change report ends with the bold word **Summary** on its own line, then 2-4 plain sentences below it: what was done, in everyday words.
 - Restating a draft is iterating, not approving. Lock only on clear "lock it"/"ship it".
 - Never propose expanding your own access/capabilities; {{NAME}} drives that.
 

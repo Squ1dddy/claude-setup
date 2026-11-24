@@ -1,6 +1,6 @@
 ---
 name: security-checklist
-description: Security checklist to follow WHILE building, for Next.js + Supabase + Netlify apps (e.g. Traksy, multi-tenant, student data). Use when adding or changing auth, sessions, roles, Server Actions, route handlers/API endpoints, Supabase tables/migrations/RLS policies/functions/storage, file uploads, forms or any user input, secrets/env vars, or anything touching personal data. Complements the built-in /security-review (which audits a finished diff).
+description: 'Security checklist to follow WHILE building Next.js + Supabase + Netlify apps (e.g. Traksy, student data). Use when adding or changing auth, sessions, roles, Server Actions, API routes, Supabase tables/RLS/functions/storage, uploads, forms or user input, secrets, or personal data. Complements /security-review, which audits a finished diff.'
 ---
 
 # Security checklist (build-time)

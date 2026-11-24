@@ -117,12 +117,14 @@ def main():
                 continue
             for is_err, body in tool_results(content):
                 low = body.lower()
-                if any(d in low for d in DENIAL):
+                if is_err and any(d in low for d in DENIAL):
                     denials.append(clip(redact(body), 200))
                 elif is_err:
                     errors[clip(redact(body.splitlines()[0] if body else ""), 120)] += 1
             text = user_text(content)
             if text is None:
+                continue
+            if text.lstrip().startswith("<side-sessions-event>"):
                 continue
             if "[Request interrupted by user" in text:
                 interrupts += 1

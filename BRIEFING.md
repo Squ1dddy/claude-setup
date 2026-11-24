@@ -42,6 +42,7 @@ Ask, one at a time: what they want to be called; what they're working on now and
 - Asks when unsure instead of guessing. Argues back when you're wrong.
 - Never puts secrets in files; keys go in env vars you set yourself.
 - Never deletes real data; scans every new skill/plugin before installing.
-- Starts each final reply with a one-line headline and ends change reports with a plain **Summary:**.
+- Runs commands itself instead of asking you to paste them. It only hands over sign-ins, secrets and admin prompts.
+- Starts each final reply with a one-line headline and ends change reports with a bold **Summary** line followed by plain sentences.
 
 End by asking which part they want to try first, and suggest: open a project folder, run `claude`, and say "set up a Brain note for this project".

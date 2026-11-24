@@ -17,7 +17,7 @@ description: Use when about to claim work is complete, fixed, or passing, before
 NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 ```
 
-If you haven't run the verification command in this message, you cannot claim it passes.
+If you haven't run the verification command since the last edit, you cannot claim it passes. A run made earlier in the ticket counts if no code changed after it; do not re-run a slow check (over ~5 min) just to repeat it. Re-run only the check that failed.
 
 ## The Gate Function
 
@@ -25,7 +25,7 @@ If you haven't run the verification command in this message, you cannot claim it
 BEFORE claiming any status or expressing satisfaction:
 
 1. IDENTIFY: What command proves this claim?
-2. RUN: Execute the FULL command (fresh, complete)
+2. RUN: Execute the command that covers the claim (complete, and after the last edit)
 3. READ: Full output, check exit code, count failures
 4. VERIFY: Does output confirm the claim?
    - If NO: State actual status with evidence
@@ -82,6 +82,7 @@ Skip any step = lying, not verifying
 **Regression tests (TDD Red-Green):**
 ```
 ✅ Write → Run (pass) → Revert fix → Run (MUST FAIL) → Restore → Run (pass)
+(Bug fixes only. For new features, one passing run of the new test is enough.)
 ❌ "I've written a regression test" (without red-green verification)
 ```
 

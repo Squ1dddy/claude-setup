@@ -3,7 +3,7 @@ name: delegate
 description: Hand a build ticket to the sonnet-coder worker - when to delegate vs build inline, the brief, the acceptance check. Use when /implement starts a ticket, or {{NAME}} says delegate or sonnet.
 ---
 
-Opus is the **lead**: it owns the overall build, scopes each ticket, and decides what counts as done. Sonnet (`sonnet-coder`) is the **builder**. Evidence: the Sonnet Subagent Benchmark in Brain (Sonnet matched Opus on every graded ticket; the lead's scoping was where Opus earned its cost).
+(Since 2026-11-19 the default session is Sonnet, so most work is built inline; this skill applies in an Opus lead session or for parallel independent tickets.) Opus is the **lead**: it owns the overall build, scopes each ticket, and decides what counts as done. Sonnet (`sonnet-coder`) is the **builder**. Evidence: the Sonnet Subagent Benchmark in Brain (Sonnet matched Opus on every graded ticket; the lead's scoping was where Opus earned its cost).
 
 ## 1. Delegate or build inline
 A spawn has a fixed cost: ~20k tokens of cold start even for a 3-line fix, plus the brief and the acceptance check. Round 3 of the benchmark (2026-10-13) measured plan-then-build at about 2x the tokens and time of a solo run, with no accuracy gain. So delegate only when ALL hold:
@@ -32,6 +32,8 @@ One brief, under ~600 words:
 - **Decisions**: product calls {{NAME}} made, stated as settled.
 - **Done checklist**: observable behaviours, each checkable by a test or command.
 - **Commands**: test and typecheck commands. If a dev server may be running, say "tests and tsc only, no build".
+
+Do not paste the lean-build rules into the brief. The `sonnet-coder` definition makes the worker read `~/.claude/lean-build.md` first. If you ever build via another agent type, the first line of its brief must say "read ~/.claude/lean-build.md first and follow it".
 
 Send it with the Agent tool, `subagent_type: sonnet-coder`.
 

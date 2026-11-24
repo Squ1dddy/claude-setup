@@ -141,6 +141,8 @@ c = KIT / 'claude'
 for sub in ('agents', 'hooks', 'skills', 'mods', 'plugins'):
     put_tree(c / sub, CLAUDE / sub)
 
+put(c / 'lean-build.md', CLAUDE / 'lean-build.md')
+
 # 2. CLAUDE.md: install if absent, else drop next to it for the agent to merge
 target = CLAUDE / 'CLAUDE.md'
 if target.exists() and target.read_bytes() == read_kit(c / 'CLAUDE.md.template'):

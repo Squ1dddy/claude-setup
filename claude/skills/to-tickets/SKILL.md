@@ -48,6 +48,8 @@ Give each ticket its **blocking edges**: the other tickets that must complete be
 
 ### 4. Quiz the user
 
+Open with a scope line: "Estimated Claude work: X hours, about Y% of weekly usage." Measure Y from `get_usage` or codeburn if available; otherwise say "untested estimate". If X is over about 6 hours, also propose the smallest version that delivers this week's outcome and say what it cuts.
+
 Present the proposed breakdown as a numbered list. For each ticket, show:
 
 - **Title**: short descriptive name

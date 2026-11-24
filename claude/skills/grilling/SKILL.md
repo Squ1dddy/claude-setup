@@ -21,6 +21,8 @@ Format a round like so:
 ➡️ <your recommended answer>
 ```
 
+**Defaults ({{NAME}}'s standing rule, 2026-11-19):** he accepts the recommendation on most questions. Put every question with a clear recommendation into one "I will do these unless you object" list (plain one-line statements). Number as full questions only the ones that are truly open. Start each question with one plain sentence on what it is and why it matters; never a ticket code or internal name alone.
+
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
 
 Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), look it up yourself, inline; don't ask the user for anything you could look up. Keep lookups short and ask the rest of the frontier in the same round. The _decisions_ are the user's: put each to them and wait.

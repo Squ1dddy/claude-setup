@@ -1,6 +1,6 @@
 ---
 name: ux-feel
-description: Checklist of 20 small UX details (skeletons, optimistic updates, undo toasts, command menu, tabular numbers, safe areas, OTP autofill, idempotency, etc.) plus the Doherty 400ms rules, for making an app feel fast and expensive. Use when auditing or building product UI (forms, lists, mutations, loading states, mobile sheets) and the question is "does it feel right", not "what should it look like". Pairs with impeccable (direction) and design-motion-principles (motion). Source: saved Instagram reels (murphmaxxing 20-tips list, brochbuilds Doherty rules), rewritten, not copied; the creators' full prompts were not obtained.
+description: 'Checklist of 20 small UX details (skeletons, optimistic updates, undo toasts, command menu, tabular numbers, safe areas, OTP autofill, idempotency) plus Doherty 400ms rules, for making an app feel fast. Use when auditing or building product UI (forms, lists, mutations, loading states, mobile sheets) and the question is does it feel right, not what should it look like. Pairs with impeccable and design-motion-principles.'
 ---
 
 # ux-feel

@@ -1,6 +1,6 @@
 {
   "env": {
-    "CLAUDE_CODE_SUBAGENT_MODEL": "opus",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
     "CLAUDE_CODE_PLUGIN_DIRS": "{{HOME}}/.claude/mods/checkpoint-band"
   },
   "permissions": {
@@ -55,9 +55,9 @@
     ],
     "deny": []
   },
-  "model": "opus",
+  "model": "sonnet",
   "advisorModel": "opus",
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "autoMemoryEnabled": false,
   "hooks": {
     "PreToolUse": [

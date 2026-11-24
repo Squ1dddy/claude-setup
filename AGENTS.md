@@ -5,6 +5,19 @@ You are a Claude Code agent. Your user's friend (the kit's author) packaged thei
 1. **Install it** into your user's machine, safely, merged with whatever they already have.
 2. **Brief your user** on how it all works, using [BRIEFING.md](BRIEFING.md).
 
+## First rule: you do the work, your user does not
+Your user may be new to the terminal. **Run every command yourself with your own shell tool.** That includes cloning, installing prerequisites, `install.py` (dry run and real), scans, verification and git. Never print a command and ask them to paste it when you can run it.
+
+Hand over only what you truly cannot do:
+- signing in (Claude, GitHub, any account), CAPTCHAs, one-time codes;
+- setting secrets or API keys (they set env vars themselves);
+- an admin or UAC prompt, or a graphical installer that needs a click;
+- a window or app you cannot reach.
+
+When you must hand something over: say which app to open and how, give exactly one command per code block, and finish everything else first. If a prerequisite is missing (git, node, Python), try to install it with the system package manager (`winget` on Windows, `brew` on macOS) yourself; ask only if that needs admin rights or fails.
+
+Ask your user questions only about choices that are theirs (name, vault location, which plugins, interview answers). Batch them into one message with your recommended answers.
+
 Read this file fully, then [SKILLS.md](SKILLS.md), then skim [claude/CLAUDE.md.template](claude/CLAUDE.md.template) and [brain/Knowledge/Vault Writing Guide.md](brain/Knowledge/Vault%20Writing%20Guide.md). Those two are the heart of the setup.
 
 ## What is in the kit
@@ -31,7 +44,7 @@ Mentions of projects like Traksy in a few skills (code-video template, security-
 Do these in order. Ask your user before anything that is hard to undo.
 
 1. **Ask first:** their OS, their first name, where they want the vault (default `~/Brain`), and whether they already use Claude Code with their own `CLAUDE.md`, hooks or skills.
-2. **Prerequisites.** Check and help install what is missing: `git`, `node` (18+), Python 3.10+, `gh` (optional), Obsidian (optional, for browsing the vault), `bash` (on Windows: Git for Windows provides it). Optional: `rtk` for the token-saving hook, `uv` for SkillSpector.
+2. **Prerequisites.** Check, and install yourself, what is missing (see the first rule): `git`, `node` (18+), Python 3.10+, `gh` (optional), Obsidian (optional, for browsing the vault), `bash` (on Windows: Git for Windows provides it). Optional: `rtk` for the token-saving hook, `uv` for SkillSpector.
 3. **Scan before installing.** The setup's own rule: every skill/plugin gets scanned before install. Run SkillSpector (see SKILLS.md) on `claude/skills/<name>` one skill at a time, or at least read the scripts in skills that ship code (`impeccable/scripts`, `anatomy`, `code-video`, `agent-reach`, `skill-inspector`). Tell your user the verdict. Note: `impeccable/scripts/bin/windows-x64/impeccable.exe` is a bundled binary (upstream impeccable engine v0.1.5). On macOS/Linux reinstall impeccable from upstream instead.
 4. **Dry run:** `python install.py --name "<Name>" --vault "<path>" --dry-run`. Read the report: `installed`, `conflicts` (files that already exist and differ; never overwritten unless `--overwrite`, which backs them up first), `skipped`, `notes`.
 5. **Install:** same command without `--dry-run`. It backs up every settings file it touches to `~/.claude/backups/claude-setup-<timestamp>/`, merges settings (adds hooks/permissions/env, keeps the user's existing values such as `model`), and `git init`s the vault (the autocommit hook needs git).

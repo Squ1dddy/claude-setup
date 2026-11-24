@@ -19,10 +19,12 @@ for i in $(seq 1 "$max"); do
   [ "$status" = active ] || { echo "EXIT: status=$status after $((i-1)) chunk(s)"; exit 0; }
   before="$(md5sum "$note")"
   echo "=== chunk run $i $(date +%T) ===" >> "$log"
-  model="$(grep -m1 '^- \[ \]' "$note" | grep -o -E '\[(opus|sonnet|haiku)\]' | tr -d '[]')"; model="${model:-opus}"  # per-chunk tag, default opus
+  model="$(grep -m1 '^- \[ \]' "$note" | grep -o -E '\[(opus|sonnet|haiku)\]' | tr -d '[]')"; model="${model:-sonnet}"  # per-chunk tag, default sonnet (2026-11-19)
   echo "model: $model" >> "$log"
-  claude -p "You are a headless auto-run worker. Follow the auto-run skill's Worker steps for this run note: $note" \
-    --model "$model" --permission-mode bypassPermissions >> "$log" 2>&1
+  claude -p "You are a headless auto-run worker. Read the '## Worker steps' section of {{HOME}}/.claude/skills/auto-run/SKILL.md and follow it for this run note: $note" \
+    --model "$model" --permission-mode bypassPermissions --strict-mcp-config --disable-slash-commands --setting-sources project >> "$log" 2>&1
+  # Lean worker ({{NAME}}, 2026-11-17): no MCP servers (~250k input tokens per call), no skills, no user settings/CLAUDE.md/hooks.
+  # Measured in secret-history: a bare call fell from ~355k to ~7k input tokens. Workers get their rules from the repo's CLAUDE.md and the run note.
   echo "=== exit $? $(date +%T) ===" >> "$log"
   [ "$(md5sum "$note")" != "$before" ] || { echo "EXIT: chunk run $i left the run note unchanged (see log)"; exit 1; }
 done
