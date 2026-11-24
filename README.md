@@ -12,8 +12,16 @@ That is all you do. Your agent runs every command itself. It only stops for thin
 
 Your agent will ask a few questions, scan the skills, do a dry run, install (merging with anything you already have, with backups), interview you to personalise it, and then explain how it all works.
 
+## Updating
+Already installed? Paste this to your agent:
+
+`Pull the latest https://github.com/Squ1dddy/claude-setup into a temp folder and update my setup from it, following the "Updating an existing install" section of AGENTS.md. Then show me what is new.`
+
+It updates your files (with backups), shows you the feature guide and what changed once, and then stays quiet until the next version.
+
 ## Files
-- [AGENTS.md](AGENTS.md): install brief for the agent.
+- [AGENTS.md](AGENTS.md): install and update brief for the agent.
+- [WHATS-NEW.md](WHATS-NEW.md): every feature, when to use it, and what changed in this version.
 - [BRIEFING.md](BRIEFING.md): how the agent explains the setup to you.
 - [SKILLS.md](SKILLS.md): every skill, plus plugins to install from upstream.
 - `install.py`: the installer (`--dry-run` first).

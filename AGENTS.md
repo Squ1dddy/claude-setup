@@ -57,7 +57,19 @@ Do these in order. Ask your user before anything that is hard to undo.
    - Start a new `claude` session in a terminal: the checkpoint band shows above the prompt; a prompt that mentions something in the vault gets a `Brain:` pointer block.
    - `/skills` (or the skill list) shows the kit skills.
 10. **Record it:** fill `Knowledge/Claude Code Setup.md` in the vault (date, what was installed, what was skipped and why).
-11. **Brief your user** using BRIEFING.md.
+11. **Brief your user** using BRIEFING.md, then show [WHATS-NEW.md](WHATS-NEW.md) part A as a quick reference. Write the `VERSION` string into `~/.claude/claude-setup-seen.txt`.
+
+## Updating an existing install
+
+Use this when your user says "update the setup", or points you at a newer clone of a kit they installed before.
+
+1. Read `~/.claude/claude-setup-seen.txt` (a version string). If it does not exist, this is a first install: use the install steps above instead.
+2. Clone the repo fresh into a temp folder. Compare its `VERSION` file with the seen version. Same version: tell your user they are up to date and stop.
+3. Scan changed skills with SkillSpector first, as in the install steps.
+4. Run `python install.py --name "<Name>" --vault "<vault>" --dry-run` and read `conflicts`. For a conflicting file under `claude/skills`, `claude/agents`, `claude/hooks`, `claude/mods` or `lean-build.md`: if your user has not edited it, apply it with `--overwrite` (the installer backs it up first); if they have, show the diff and ask. **Never overwrite** `Profile.md`, `Style.md`, any other vault note, or their `CLAUDE.md`. For `CLAUDE.md`, merge the new `CLAUDE.md.claude-setup` into theirs section by section and keep their `@<vault>/Profile.md` import line.
+5. Report what changed, what you skipped and why.
+6. **Show [WHATS-NEW.md](WHATS-NEW.md) once.** Read part A (what they have, when to use what) and part B (what changed) in plain words, then offer to try one thing from it.
+7. **Dismiss:** write the new `VERSION` string into `~/.claude/claude-setup-seen.txt`. Do this even if your user says "skip" or "not now". Do not show WHATS-NEW again until `VERSION` changes.
 
 ## Platform notes
 
